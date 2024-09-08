@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -48,7 +48,97 @@
                 </svg>
                 <h1>Overview</h1>
             </section>
-            <section>More info</section>
+            <section>
+                <h2>2023 JavaScript Trends</h2>
+                <small>Source: <a href="https://risingstars.js.org/2023/">https://risingstars.js.org/2023/</a></small>
+            </section>
+            <section>
+                <canvas data-chart="bar" >
+                    <!--
+                    {
+                      "data": {
+                        "labels": ["shadcn/ui", "Bun", "Excalidraw", "tldraw", "Next.js", "Supabase", "React", "Tauri", "Drizzle ORM", "htmx"],
+                        "datasets": [
+                          {
+                            "data": [39500, 29300, 23200, 17900, 17800, 17700, 16900, 15700, 15600, 15600],
+                            "label": "GitHub stars",
+                            "backgroundColor": ["#325F29", "#325F29","#325F29","#325F29","#325F29","#325F29","#325F29","#325F29","#325F29","#63619D"]
+                          }
+                        ]
+                      },
+                      "options": {
+                        "scales": {
+                          "y": {
+                            "title": {
+                              "display": true,
+                              "text": "GitHub stars"
+                            }
+                          }
+                        },
+                        "plugins": {
+                          "legend": {
+                            "display": false
+                          },
+                          "title": {
+                            "display": true,
+                            "text": "JavaScript Projects Overall",
+                            "font": {"size": 24}
+                          }
+                        }
+                      }
+                    }
+                    -->
+                </canvas>
+            </section>
+            <section>
+                <canvas data-chart="bar">
+                    <!--
+                    {
+                      "data": {
+                        "labels": ["React", "htmx", "Svelte", "Million", "Vue.js"],
+                        "datasets": [
+                          {
+                            "data": [16900, 15600, 10300, 8200, 7900],
+                            "label": "GitHub stars",
+                            "backgroundColor": ["#325F29", "#63619D","#325F29","#325F29","#325F29"]
+                          }
+                        ]
+                      },
+                      "options": {
+                        "scales": {
+                          "y": {
+                            "title": {
+                              "display": true,
+                              "text": "GitHub stars"
+                            }
+                          }
+                        },
+                        "plugins": {
+                          "legend": {
+                            "display": false
+                          },
+                          "title": {
+                            "display": true,
+                            "text": "JavaScript Frameworks",
+                            "font": {"size": 24}
+                          }
+                        }
+                      }
+                    }
+                    -->
+                </canvas>
+            </section>
+            <section>
+                <h2>Five Aspects of htmx</h2>
+                <ol>
+                    <li>Behaviors are described within the element</li>
+                    <li>Any element can issue an HTTP request</li>
+                    <li>Any event can trigger an HTTP request</li>
+                    <li>Use all the “verbs” of HTTP</li>
+                    <li>Target any element in the document for replacement</li>
+                </ol>
+
+            </section>
         </section>
         <section>
             <section>
@@ -123,6 +213,8 @@
 <script src="plugin/notes/notes.js"></script>
 <script src="plugin/markdown/markdown.js"></script>
 <script src="plugin/highlight/highlight.js"></script>
+<script src="plugin/chart/plugin.js"></script>
+<script src="dist/chart.umd.min.js"></script>
 <script>
     // More info about initialization & config:
     // - https://revealjs.com/initialization/
@@ -131,7 +223,7 @@
         hash: true,
 
         // Learn about plugins: https://revealjs.com/plugins/
-        plugins: [RevealMarkdown, RevealHighlight, RevealNotes]
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealChart]
     });
 </script>
 </body>
