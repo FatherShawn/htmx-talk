@@ -1,4 +1,22 @@
+:root {
+    --r-heading-color: #0E3B75;
+}
 div.chart {
     position: relative;
     min-height: 50vh;
+}
+
+svg {
+    max-width: 75vw;
+}
+
+.reveal-viewport {
+    background: #bbd5f7;
+    background: -moz-radial-gradient(center, circle cover, #f7fbfc 0%, #bbd5f7 100%);
+    background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #f7fbfc), color-stop(100%, #bbd5f7));
+    background: -webkit-radial-gradient(center, circle cover, #f7fbfc 0%, #bbd5f7 100%);
+    background: -o-radial-gradient(center, circle cover, #f7fbfc 0%, #bbd5f7 100%);
+    background: -ms-radial-gradient(center, circle cover, #f7fbfc 0%, #bbd5f7 100%);
+    background: radial-gradient(center, circle cover, #f7fbfc 0%, #bbd5f7 100%);
+    background-color: var(--r-background-color);
 }
