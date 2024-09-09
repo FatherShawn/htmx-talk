@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="dist/reset.css">
     <link rel="stylesheet" href="dist/reveal.css">
     <link rel="stylesheet" href="dist/theme/sky.css">
+    <link rel="stylesheet" href="assets/customizations.css">
 
     <!-- Theme used for syntax highlighted code -->
     <link rel="stylesheet" href="plugin/highlight/monokai.css">
@@ -53,80 +54,84 @@
                 <small>Source: <a href="https://risingstars.js.org/2023/">https://risingstars.js.org/2023/</a></small>
             </section>
             <section>
-                <canvas data-chart="bar" >
-                    <!--
-                    {
-                      "data": {
-                        "labels": ["shadcn/ui", "Bun", "Excalidraw", "tldraw", "Next.js", "Supabase", "React", "Tauri", "Drizzle ORM", "htmx"],
-                        "datasets": [
-                          {
-                            "data": [39500, 29300, 23200, 17900, 17800, 17700, 16900, 15700, 15600, 15600],
-                            "label": "GitHub stars",
-                            "backgroundColor": ["#325F29", "#325F29","#325F29","#325F29","#325F29","#325F29","#325F29","#325F29","#325F29","#63619D"]
-                          }
-                        ]
-                      },
-                      "options": {
-                        "scales": {
-                          "y": {
-                            "title": {
-                              "display": true,
-                              "text": "GitHub stars"
+                <div class="chart">
+                    <canvas data-chart="bar">
+                        <!--
+                        {
+                          "data": {
+                            "labels": ["shadcn/ui", "Bun", "Excalidraw", "tldraw", "Next.js", "Supabase", "React", "Tauri", "Drizzle ORM", "htmx"],
+                            "datasets": [
+                              {
+                                "data": [39500, 29300, 23200, 17900, 17800, 17700, 16900, 15700, 15600, 15600],
+                                "label": "GitHub stars",
+                                "backgroundColor": ["#325F29", "#325F29","#325F29","#325F29","#325F29","#325F29","#325F29","#325F29","#325F29","#63619D"]
+                              }
+                            ]
+                          },
+                          "options": {
+                            "scales": {
+                              "y": {
+                                "title": {
+                                  "display": true,
+                                  "text": "GitHub stars"
+                                }
+                              }
+                            },
+                            "plugins": {
+                              "legend": {
+                                "display": false
+                              },
+                              "title": {
+                                "display": true,
+                                "text": "JavaScript Projects Overall",
+                                "font": {"size": 24}
+                              }
                             }
                           }
-                        },
-                        "plugins": {
-                          "legend": {
-                            "display": false
-                          },
-                          "title": {
-                            "display": true,
-                            "text": "JavaScript Projects Overall",
-                            "font": {"size": 24}
-                          }
                         }
-                      }
-                    }
-                    -->
-                </canvas>
+                        -->
+                    </canvas>
+                </div>
             </section>
             <section>
-                <canvas data-chart="bar">
-                    <!--
-                    {
-                      "data": {
-                        "labels": ["React", "htmx", "Svelte", "Million", "Vue.js"],
-                        "datasets": [
-                          {
-                            "data": [16900, 15600, 10300, 8200, 7900],
-                            "label": "GitHub stars",
-                            "backgroundColor": ["#325F29", "#63619D","#325F29","#325F29","#325F29"]
-                          }
-                        ]
-                      },
-                      "options": {
-                        "scales": {
-                          "y": {
-                            "title": {
-                              "display": true,
-                              "text": "GitHub stars"
+                <div class="chart">
+                    <canvas data-chart="bar">
+                        <!--
+                        {
+                          "data": {
+                            "labels": ["React", "htmx", "Svelte", "Million", "Vue.js"],
+                            "datasets": [
+                              {
+                                "data": [16900, 15600, 10300, 8200, 7900],
+                                "label": "GitHub stars",
+                                "backgroundColor": ["#325F29", "#63619D","#325F29","#325F29","#325F29"]
+                              }
+                            ]
+                          },
+                          "options": {
+                            "scales": {
+                              "y": {
+                                "title": {
+                                  "display": true,
+                                  "text": "GitHub stars"
+                                }
+                              }
+                            },
+                            "plugins": {
+                              "legend": {
+                                "display": false
+                              },
+                              "title": {
+                                "display": true,
+                                "text": "JavaScript Frameworks",
+                                "font": {"size": 24}
+                              }
                             }
                           }
-                        },
-                        "plugins": {
-                          "legend": {
-                            "display": false
-                          },
-                          "title": {
-                            "display": true,
-                            "text": "JavaScript Frameworks",
-                            "font": {"size": 24}
-                          }
                         }
-                      }
-                    }
-                    -->
-                </canvas>
+                        -->
+                    </canvas>
+                </div>
             </section>
             <section>
                 <h2>Five Aspects of htmx</h2>
@@ -137,7 +142,6 @@
                     <li>Use all the “verbs” of HTTP</li>
                     <li>Target any element in the document for replacement</li>
                 </ol>
-
             </section>
         </section>
         <section>
@@ -151,7 +155,32 @@
                 </svg>
                 <h1>Features</h1>
             </section>
-            <section>More info</section>
+            <section>
+                <h2>Behaviors are described within the element</h2>
+                <pre><code data-line-numbers="2-5"><script type="text/template">
+<select data-drupal-selector="edit-config-type"
+        data-hx-post="/admin/config/development/configuration/single/export"
+        data-hx-select="select[data-drupal-selector='edit-config-name']"
+        data-hx-target="select[data-drupal-selector='edit-config-name']"
+        data-hx-swap="outerHTML  ignoreTitle:true"
+        id="edit-config-type" name="config_type"
+        class="form-select form-element form-element--type-select">
+    <!--    Option elements would be here.   -->
+</select>
+                </script></code></pre>
+            </section>
+            <section>
+                <h2>Any element can issue an HTTP request</h2>
+            </section>
+            <section>
+                <h2>Any event can trigger an HTTP request</h2>
+            </section>
+            <section>
+                <h2>Use all the “verbs” of HTTP</h2>
+            </section>
+            <section>
+                <h2>Target any element in the document for replacement</h2>
+            </section>
         </section>
         <section>
             <section>
@@ -221,6 +250,8 @@
     //  - https://revealjs.com/config/
     Reveal.initialize({
         hash: true,
+        width: 1400,
+        height: 700,
 
         // Learn about plugins: https://revealjs.com/plugins/
         plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealChart]
