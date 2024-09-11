@@ -34,7 +34,33 @@
         </section>
         <section>
             <section><h1>Hypermedia</h1></section>
-            <section>More info</section>
+            <section>
+                <h2>Why do we call it “the web?”</h2>
+                <div class="fragment">
+                    <img src="assets/An-overview-diagram-of-the-World-Wide-Web-pages-about-the-research-activities-at-GVU-It.png">
+                    <small style="font-size: x-small; display: block">Source: <a href="http://dx.doi.org/10.1145/223904.223947">Visualizing Complex Hypermedia Networks through Multiple Hierarchical Views</a> [1995]</small>
+                </div>
+            </section>
+            <section>
+                <h2>Hypermedia Controls: How we “branch”</h2>
+                <p class="fragment">HTML has two hypermedia controls.</p>
+                <pre class="fragment"><code><script type="text/template">
+<a href="https://www.example.com"></a>
+<form action="https://www.example.com/form"></form>
+                </script></code></pre>
+            </section>
+            <section>
+                <h2>Hypermedia Applications</h2>
+                <ul>
+                    <li class="fragment">Use a <em>declarative</em> syntax within the HTML.</li>
+                    <li class="fragment">Interact with the server using HTML.</li>
+                    <li class="fragment">Stay within the original <a
+                      href="https://develolier.mozilla.org/en-US/docs/Glossary/REST">REST-ful architecture</a> of the
+                        web.</li>
+                    <li class="fragment">Continue to use <a href="https://htmx.org/essays/hateoas/">Hypermedia As The
+                        Engine of Application State</a> (HATEOAS).</li>
+                </ul>
+            </section>
         </section>
         <section>
             <section>
@@ -155,8 +181,7 @@
             </section>
             <section data-transition="slide-in fade-out">
                 <h2>Behaviors are described within the element</h2>
-                <pre><code data-line-numbers="3-6"><script type="text/template">
-<select data-drupal-selector="edit-config-type"
+                <pre><code data-line-numbers="2-5"><script type="text/template"><select data-drupal-selector="edit-config-type"
         data-hx-post="/admin/config/development/configuration/single/export"
         data-hx-select="select[data-drupal-selector='edit-config-name']"
         data-hx-target="select[data-drupal-selector='edit-config-name']"
@@ -169,8 +194,7 @@
             </section>
             <section data-transition="fade">
                 <h2>Any element can issue an HTTP request</h2>
-                <pre><code data-line-numbers="3"><script type="text/template">
-<select data-drupal-selector="edit-config-type"
+                <pre><code data-line-numbers="2"><script type="text/template"><select data-drupal-selector="edit-config-type"
         data-hx-post="/admin/config/development/configuration/single/export"
         data-hx-select="select[data-drupal-selector='edit-config-name']"
         data-hx-target="select[data-drupal-selector='edit-config-name']"
@@ -183,12 +207,45 @@
             </section>
             <section data-transition="fade">
                 <h2>Any event can trigger an HTTP request</h2>
+                <pre><code data-line-numbers="2-6"><script type="text/template"><tr
+  data-hx-get="/admin/content/example?page=2"
+  data-hx-trigger="revealed"
+  data-hx-select="table.views-table > tbody"
+  data-hx-swap="afterend"
+>
+  <td headers="view-field-computed-name-sort-table-column" class="views-field views-field-field-computed-name-sort">...</td>
+  <td headers="view-field-computed-subtitle-table-column" class="views-field views-field-field-computed-subtitle">...</td>
+  <td headers="view-status-table-column" class="views-field views-field-status">...</td>
+  <td headers="view-created-table-column" class="views-field views-field-created">...</td>
+  <td headers="view-changed-table-column" class="views-field views-field-changed">...</td>
+  <td headers="view-operations-table-column" class="views-field views-field-operations">...</td>
+</tr>
+                </script> </code></pre>
             </section>
             <section data-transition="fade">
                 <h2>Use all the “verbs” of HTTP</h2>
+                <ul>
+                    <li>GET (retrieves): <code>data-hx-get="/path"</code></li>
+                    <li>POST (creates): <code>data-hx-post="/path"</code></li>
+                    <li>PUT & PATCH (alter):</li>
+                    <ul>
+                        <li><code>data-hx-put="/path"</code></li>
+                        <li><code>data-hx-patch="/path"</code></li>
+                    </ul>
+                    <li>DELETE (deletes): <code>data-hx-delete="/path"</code></li>
+                </ul>
             </section>
             <section data-transition="fade-in slide-out">
                 <h2>Target any element in the document for replacement</h2>
+                <pre><code data-line-numbers="3-5"><script type="text/template"><button
+    data-hx-get=”/htmx/blocks/add/announce_block”
+    data-hx-select="#drupal-off-canvas-wrapper"
+    data-hx-target="#drupal-off-canvas-wrapper"
+    data-hx-swap="outerHTML ignoreTitle:true"
+    class="button" name="replace">
+  Add
+</button>
+                </script></code></pre>
             </section>
         </section>
         <section>
