@@ -153,9 +153,9 @@
                 </svg>
                 <h1>Features</h1>
             </section>
-            <section>
+            <section data-transition="slide-in fade-out">
                 <h2>Behaviors are described within the element</h2>
-                <pre><code data-line-numbers="2-5"><script type="text/template">
+                <pre><code data-line-numbers="3-6"><script type="text/template">
 <select data-drupal-selector="edit-config-type"
         data-hx-post="/admin/config/development/configuration/single/export"
         data-hx-select="select[data-drupal-selector='edit-config-name']"
@@ -167,16 +167,27 @@
 </select>
                 </script></code></pre>
             </section>
-            <section>
+            <section data-transition="fade">
                 <h2>Any element can issue an HTTP request</h2>
+                <pre><code data-line-numbers="3"><script type="text/template">
+<select data-drupal-selector="edit-config-type"
+        data-hx-post="/admin/config/development/configuration/single/export"
+        data-hx-select="select[data-drupal-selector='edit-config-name']"
+        data-hx-target="select[data-drupal-selector='edit-config-name']"
+        data-hx-swap="outerHTML  ignoreTitle:true"
+        id="edit-config-type" name="config_type"
+        class="form-select form-element form-element--type-select">
+    <!--    Option elements would be here.   -->
+</select>
+                </script></code></pre>
             </section>
-            <section>
+            <section data-transition="fade">
                 <h2>Any event can trigger an HTTP request</h2>
             </section>
-            <section>
+            <section data-transition="fade">
                 <h2>Use all the “verbs” of HTTP</h2>
             </section>
-            <section>
+            <section data-transition="fade-in slide-out">
                 <h2>Target any element in the document for replacement</h2>
             </section>
         </section>
