@@ -259,7 +259,101 @@
                 </svg>
                 <h1>Comparison</h1>
             </section>
-            <section>More info</section>
+            <section>
+                <h2>A Typical JavaScript Approach</h2>
+                <ul>
+                    <li class="fragment">Creates behaviors using an imperative syntax that is seperated from the HTML.</li>
+                    <li class="fragment">Interact with the server using JSON data.</li>
+                    <li class="fragment">State is modeled in Javascript memory.</li>
+                </ul>
+            </section>
+            <section>
+                <h3>Behaviors and state are seperated from HTML.</h3>
+                <div class="mermaid">
+                    <pre>
+                        stateDiagram-v2
+                            ShadowDOM: Shadow DOM
+                            b: body
+                            bs: body
+                            d1: div
+                            d2: div
+                            d3: div
+                            d4: div
+                            p1: p
+                            p2: p
+                            i1: img
+                            note left of i1 : To make this clickable
+                            i2: img
+                            note right of i2 : Add a click behavior here
+
+                            [*] --> HTML
+
+                            state HTML {
+                                b --> d1
+                                b --> d2
+                                d1 --> i1
+                                d2 --> p1
+                            }
+
+                            [*] --> ShadowDOM
+                            state ShadowDOM {
+                                bs --> d3
+                                bs --> d4
+                                d3 --> i2
+                                d4 --> p2
+                            }
+
+                    </pre>
+                </div>
+            </section>
+            <section>
+                <div class="chart">
+                    <canvas data-chart="bar">
+                        <!--
+                        {
+                          "data": {
+                            "labels": ["React", "htmx"],
+                            "datasets": [
+                              {
+                                "data": [6.4, 2.9],
+                                "label": "kB",
+                                "backgroundColor": ["#3465A4", "#B38E07"]
+                              }
+                            ]
+                          },
+                          "options": {
+                            "scales": {
+                              "y": {
+                                "title": {
+                                  "display": true,
+                                  "text": "kB"
+                                }
+                              }
+                            },
+                            "plugins": {
+                              "legend": {
+                                "display": false
+                              },
+                              "title": {
+                                "display": true,
+                                "text": "Lower page weight",
+                                "font": {"size": 24}
+                              }
+                            }
+                          }
+                        }
+                        -->
+                    </canvas>
+                </div>
+            </section>
+            <section>
+                <h2>HTMX is different</h2>
+                <ul>
+                    <li class="fragment">HTMX extends and processes HTML.</li>
+                    <li class="fragment">HTMX has no other dependencies.</li>
+                    <li class="fragment">HTMX doesn't need any kind of compiler or transpiler.</li>
+                </ul>
+            </section>
         </section>
         <section>
             <section>
@@ -309,6 +403,7 @@
 <script src="plugin/markdown/markdown.js"></script>
 <script src="plugin/highlight/highlight.js"></script>
 <script src="plugin/chart/plugin.js"></script>
+<script src="plugin/mermaid/mermaid.js"></script>
 <script src="dist/chart.umd.min.js"></script>
 <script>
     // More info about initialization & config:
@@ -318,9 +413,12 @@
         hash: true,
         width: 1400,
         height: 700,
+        mermaid: {},
+        mermaidPlugin: {},
+
 
         // Learn about plugins: https://revealjs.com/plugins/
-        plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealChart]
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealChart, RevealMermaid]
     });
 </script>
 </body>
