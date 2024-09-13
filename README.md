@@ -12,6 +12,7 @@ file. If you wish to  serve them on a nicer url, this repository is setup as a
 
 * [Documentation](https://htmx.org/docs/)
 * [Book](https://hypermedia.systems)
+* [Rule of Least Power](https://blog.gypsydave5.com/posts/2024/4/12/htmx-and-the-rule-of-least-power/)
 
 ### Drupal
 
