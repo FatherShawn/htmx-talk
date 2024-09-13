@@ -34,14 +34,14 @@
         </section>
         <section>
             <section><h1>Hypermedia</h1></section>
-            <section>
+            <section data-transition="slide-in fade-out">
                 <h2>Why do we call it “the web?”</h2>
                 <div class="fragment">
                     <img src="assets/An-overview-diagram-of-the-World-Wide-Web-pages-about-the-research-activities-at-GVU-It.png">
                     <small style="font-size: x-small; display: block">Source: <a href="http://dx.doi.org/10.1145/223904.223947">Visualizing Complex Hypermedia Networks through Multiple Hierarchical Views</a> [1995]</small>
                 </div>
             </section>
-            <section>
+            <section data-transition="fade">
                 <h2>Hypermedia Controls: How we “branch”</h2>
                 <p class="fragment">HTML has two hypermedia controls.</p>
                 <pre class="fragment"><code><script type="text/template">
@@ -49,7 +49,7 @@
 <form action="https://www.example.com/form"></form>
                 </script></code></pre>
             </section>
-            <section>
+            <section data-transition="fade-in slide-out">
                 <h2>Hypermedia Applications</h2>
                 <ul>
                     <li class="fragment">Use a <em>declarative</em> syntax within the HTML.</li>
@@ -73,11 +73,11 @@
                 </svg>
                 <h1>Overview</h1>
             </section>
-            <section>
+            <section data-transition="slide-in fade-out">
                 <h2>2023 JavaScript Trends</h2>
                 <small>Source: <a href="https://risingstars.js.org/2023/">https://risingstars.js.org/2023/</a></small>
             </section>
-            <section>
+            <section data-transition="fade">
                 <div class="chart">
                     <canvas data-chart="bar">
                         <!--
@@ -117,7 +117,7 @@
                     </canvas>
                 </div>
             </section>
-            <section>
+            <section data-transition="fade">
                 <div class="chart">
                     <canvas data-chart="bar">
                         <!--
@@ -157,7 +157,7 @@
                     </canvas>
                 </div>
             </section>
-            <section>
+            <section data-transition="fade-in slide-out">
                 <h2>Five Aspects of htmx</h2>
                 <ol>
                     <li>Behaviors are described within the element</li>
@@ -259,7 +259,7 @@
                 </svg>
                 <h1>Comparison</h1>
             </section>
-            <section>
+            <section data-transition="slide-in fade-out">
                 <h2>A Typical JavaScript Approach</h2>
                 <ul>
                     <li class="fragment">Creates behaviors using an imperative syntax that is seperated from the HTML.</li>
@@ -267,7 +267,7 @@
                     <li class="fragment">State is modeled in Javascript memory.</li>
                 </ul>
             </section>
-            <section>
+            <section data-transition="fade">
                 <h3>Behaviors and state are seperated from HTML.</h3>
                 <div class="mermaid">
                     <pre>
@@ -306,7 +306,13 @@
                     </pre>
                 </div>
             </section>
-            <section>
+            <section data-transition="fade">
+                <h2>HTMX is different</h2>
+                <ul>
+                    <li>HTMX is smaller in size and scope</li>
+                </ul>
+            </section>
+            <section data-transition="fade">
                 <div class="chart">
                     <canvas data-chart="bar">
                         <!--
@@ -346,9 +352,10 @@
                     </canvas>
                 </div>
             </section>
-            <section>
+            <section data-transition="fade-in slide-out">
                 <h2>HTMX is different</h2>
                 <ul>
+                    <li>HTMX is smaller in size and scope: framework or library?</li>
                     <li class="fragment">HTMX extends and processes HTML.</li>
                     <li class="fragment">HTMX has no other dependencies.</li>
                     <li class="fragment">HTMX doesn't need any kind of compiler or transpiler.</li>
@@ -366,7 +373,75 @@
                 </svg>
                 <h1>In a Drupal Project</h1>
             </section>
-            <section>More info</section>
+            <section data-transition="slide-in fade-out">
+                <h2>HTMX is easy to use in your Drupal project</h2>
+                <a href="https://www.drupal.org/project/htmx">https://www.drupal.org/project/htmx</a>
+                <pre><code class="language-sh">composer require 'drupal/htmx:^1.2'</code></pre>
+                <span class="fragment"> and either
+                <pre><code class="language-twig">{# In a Twig template we attach the library. #}
+{{ attach_library('htmx/drupal') }}</code></pre>
+                or
+                <pre><code class="language-php">// Include it in your Drupal render array.
+$build['#attached']['library'][] = 'htmx/drupal';
+</code></pre></span>
+            </section>
+            <section data-transition="fade">
+                <h2>Your HTMX toolbox contains a lot of attributes</h2>
+                <pre><code class="language-html"><script type="text/template"><tr
+  data-hx-get="/admin/content/example?page=2"
+  data-hx-trigger="revealed"
+  data-hx-select="table.views-table > tbody"
+  data-hx-swap="afterend"
+></tr>
+                </script> </code></pre>
+            </section>
+            <section data-transition="fade">
+                <code>\Drupal\htmx\Template\HtmxAttribute</code>
+                <pre><code class="language-php">class HtmxAttribute extends Attribute {}</code></pre>
+                What we add to the extended class are methods to build HTMX attributes.
+                <pre><code class="language-php"><script type="text/template">// Add a button to save and configure another plugin.
+$htmxContinue = new HtmxAttribute();
+$htmxContinue->post(Url::fromRoute('entity.htmx_block.add_form', ['plugin_id' => $pluginID]))
+->select('dialog')
+->target('closest dialog')
+->swap('outerHTML')
+->selectOob('#htmx-block-list');
+</script> </code> </pre>
+                And then you can add the result to the render array.
+                <pre><code class="language-php"><script type="text/template">$actions = [
+  'submit' => $parentActions['submit'],
+  'submit-continue' => [
+    '#type' => 'submit',
+    '#button_type' => 'secondary',
+    '#value' => $this->t('Save and continue'),
+    '#submit' => ['::submitForm', '::save'],
+    '#attributes' => $htmxContinue->toArray(),
+  ],
+];</script></code></pre>
+            </section>
+            <section data-transition="fade">
+                <p>Since we extend <code>Attribute</code> you can pass your other attributes to the constructor</p>
+                <pre><code class="language-php"><script type="text/template">$htmxSelect = new HtmxAttribute([
+    'class' => ['button--htmx', 'button--htmx-refresh'],
+    'aria-live' => 'polite,
+  ]);
+
+$htmxSelect->get(Url::fromRoute('htmx_blocks.htmx_system_block_library'))
+  ->select('table.block-add-table')
+  ->target('dialog > table.block-add-table')
+  ->swap('outerHTML');
+            </script></code></pre>
+                <p>And all the attributes will be added to the render array:</p>
+                <pre><code class="language-php"><script type="text/template">$yourArray['#attributes'] = $htmxSelect->toArray();</script></code></pre>
+            </section>
+            <section data-transition="fade-in slide-out">
+              <h2>HTMX attributes in Twig</h2>
+              <p>Coming feature:<br><a href="https://www.drupal.org/project/htmx/issues/3474162">https://www.drupal.org/project/htmx/issues/3474162</a></p>
+              <pre><code class="language-twig"><script type="text/template">{% set htmx_attribute = create_htmx() %}%}
+{# build up your htmx attributes #}
+{% attributes.merge(htmx_attribute) %}
+<button {{ attributes }}>Some text</button></script></code></pre>
+            </section>
         </section>
         <section>
             <section>
