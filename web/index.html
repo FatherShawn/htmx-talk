@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="assets/customizations.css">
 
     <!-- Theme used for syntax highlighted code -->
-    <link rel="stylesheet" href="plugin/highlight/monokai.css">
+    <link rel="stylesheet" href="plugin/highlight/zenburn.css">
 </head>
 <body>
 <div class="reveal">
@@ -44,10 +44,10 @@
             <section data-transition="fade">
                 <h2>Hypermedia Controls: How we “branch”</h2>
                 <p class="fragment">HTML has two hypermedia controls.</p>
-                <pre class="fragment"><code><script type="text/template">
-<a href="https://www.example.com"></a>
-<form action="https://www.example.com/form"></form>
-                </script></code></pre>
+                <pre class="fragment">
+<code><script type="text/template"><a href="https://www.example.com"></a>
+
+<form action="https://www.example.com/form"></form></script></code></pre>
             </section>
             <section data-transition="fade-in slide-out">
                 <h2>Hypermedia Applications</h2>
@@ -398,7 +398,8 @@ $build['#attached']['library'][] = 'htmx/drupal';
             <section data-transition="fade">
                 <code>\Drupal\htmx\Template\HtmxAttribute</code>
                 <pre><code class="language-php">class HtmxAttribute extends Attribute {}</code></pre>
-                What we add to the extended class are methods to build HTMX attributes.
+                <span class="fragment">
+                    What we add to the extended class are methods to build HTMX attributes.
                 <pre><code class="language-php"><script type="text/template">// Add a button to save and configure another plugin.
 $htmxContinue = new HtmxAttribute();
 $htmxContinue->post(Url::fromRoute('entity.htmx_block.add_form', ['plugin_id' => $pluginID]))
@@ -407,6 +408,8 @@ $htmxContinue->post(Url::fromRoute('entity.htmx_block.add_form', ['plugin_id' =>
 ->swap('outerHTML')
 ->selectOob('#htmx-block-list');
 </script> </code> </pre>
+                </span>
+                <span class="fragment">
                 And then you can add the result to the render array.
                 <pre><code class="language-php"><script type="text/template">$actions = [
   'submit' => $parentActions['submit'],
@@ -417,7 +420,7 @@ $htmxContinue->post(Url::fromRoute('entity.htmx_block.add_form', ['plugin_id' =>
     '#submit' => ['::submitForm', '::save'],
     '#attributes' => $htmxContinue->toArray(),
   ],
-];</script></code></pre>
+];</script></code></pre></span>
             </section>
             <section data-transition="fade">
                 <p>Since we extend <code>Attribute</code> you can pass your other attributes to the constructor</p>
@@ -434,13 +437,31 @@ $htmxSelect->get(Url::fromRoute('htmx_blocks.htmx_system_block_library'))
                 <p>And all the attributes will be added to the render array:</p>
                 <pre><code class="language-php"><script type="text/template">$yourArray['#attributes'] = $htmxSelect->toArray();</script></code></pre>
             </section>
-            <section data-transition="fade-in slide-out">
+            <section data-transition="fade">
               <h2>HTMX attributes in Twig</h2>
               <p>Coming feature:<br><a href="https://www.drupal.org/project/htmx/issues/3474162">https://www.drupal.org/project/htmx/issues/3474162</a></p>
               <pre><code class="language-twig"><script type="text/template">{% set htmx_attribute = create_htmx() %}%}
+
 {# build up your htmx attributes #}
+
 {% attributes.merge(htmx_attribute) %}
 <button {{ attributes }}>Some text</button></script></code></pre>
+            </section>
+            <section data-transition="fade-in slide-out">
+                <h2>More tools in the box</h2>
+                <ul>
+                    <li class="fragment">Assets (CSS/JS) from the request are also inserted
+                        <ul>
+                            <li>Detect</li>
+                            <li>Diff</li>
+                            <li>Insert</li>
+                        </ul>
+                    </li>
+                    <li class="fragment">Route option: <code>_htmx_route: true</code> &#8658; <code>Drupal\Core\Render\Plugin\DisplayVariant\SimplePageVariant</code></li>
+                    <li class="fragment"><code>/htmx/{entityType}/{entity}/{viewMode}</code></li>
+                    <li class="fragment">HTMX Block: A drupal block that loads another block dynamically via HTMX.</li>
+                    <li class="fragment"><code>htmx/debug</code> library &#8658; <code>data-hx-ext="debug"</code></li>
+                </ul>
             </section>
         </section>
         <section>
@@ -454,7 +475,80 @@ $htmxSelect->get(Url::fromRoute('htmx_blocks.htmx_system_block_library'))
                 </svg>
                 <h1>In Drupal Core</h1>
             </section>
-            <section>More info</section>
+            <section data-transition="slide-in fade-out">
+                <h2>A proposal</h2>
+                <ul>
+                    <li class="fragment">Alex Bronstein (effulgentsia)</li>
+                    <li class="fragment"><a href="https://www.drupal.org/project/drupal/issues/3404409">Gradually replace Drupal's AJAX system with
+                        HTMX</a></code></li>
+                    <li class="fragment">Connected to the effort to refactor jQuery out of Drupal</li>
+                </ul>
+            </section>
+            <section data-transition="fade">
+                <h2>A Proof of Concept Under Construction</h2>
+                <ul>
+                    <li class="fragment">Théodore Biadala (nod_), <em>front-end framework manager</em>, requested a POC</li>
+                    <li class="fragment"><a href="https://www.drupal.org/project/drupal/issues/3446642">[POC] Implementing some components of the Ajax system using HTMX</a></code></li>
+                    <li class="fragment">A Drupal creativity pattern: innovate in contrib and bring the learning to core</li>
+                    <li class="fragment">Uses the same process from contrib to insert Assets (CSS/JS) from the request.</li>
+                </ul>
+            </section>
+            <section data-transition="fade">
+                <h2>Freedom to change things</h2>
+                <pre><code class="language-php">interface HtmlAttributeInterface extends  \Countable, \IteratorAggregate, MarkupInterface {}
+
+class HtmxAttribute Implements HtmlAttributeInterface {}
+
+class Attribute implements HtmlAttributeInterface, \ArrayAccess {}</code></pre>
+            </section>
+            <section data-transition="fade">
+                <h2>Usage is only focused on HTMX attributes</h2>
+                <pre><code class="language-php"><script type="text/template">// Prepare an HtmxAttribute for each dynamic select.
+$config_type_htmx = new HtmxAttribute();
+
+$form['config_type'] = [
+    '#title' => $this->t('Configuration type'),
+    '#type' => 'select',
+    '#options' => $config_types,
+    '#default_value' => $type_value,
+    '#htmx' => $config_type_htmx
+        ->post($form_url)
+        ->select('select[data-drupal-selector="edit-config-name"]')
+        ->target('select[data-drupal-selector="edit-config-name"]')
+        ->swap('outerHTML'),
+];
+</script></code></pre>
+            </section>
+            <section data-transition="fade">
+                <code>\Drupal\Core\Render\Element\RenderElementBase</code>
+<pre><code class="language-php"><script type="text/template">public static function preProcessHtmxElement(array $element): array {
+    $processed = $element['#htmx_processed'] ?? FALSE;
+    // Skip already processed elements.
+    if ($processed) {
+      return $element;
+    }
+    // Initialize #htmx_processed, so we do not process this element again.
+    $element['#htmx_processed'] = FALSE;
+
+    // Nothing to do if there are no Ajax settings.
+    if (empty($element['#htmx'])) {
+      return $element;
+    }
+
+    // Attach HTMX and integration javascript.
+    $element['#attached']['library'][] = 'core/drupal.htmx';
+    $element['#attributes'] = $element['#attributes'] ?? [];
+    $element['#attributes'] = AttributeHelper::mergeCollections($element['#attributes'], $element['#htmx']);
+
+
+    // Indicate that HTMX processing was successful.
+    $element['#htmx_processed'] = TRUE;
+    return $element;
+}</script></code></pre>
+            </section>
+            <section data-transition="fade-in slide-out">
+                <h2>Collaborators enthusiastically welcomed!</h2>
+            </section>
         </section>
         <section>
             <svg xmlns="http://www.w3.org/2000/svg" width="400" height="400"
