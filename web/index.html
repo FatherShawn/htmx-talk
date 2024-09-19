@@ -438,30 +438,50 @@ $htmxSelect->get(Url::fromRoute('htmx_blocks.htmx_system_block_library'))
                 <pre><code class="language-php"><script type="text/template">$yourArray['#attributes'] = $htmxSelect->toArray();</script></code></pre>
             </section>
             <section data-transition="fade">
+              <h2>More tools in the box</h2>
+              <ul>
+                <li class="fragment">Assets (CSS/JS) from the request are also inserted
+                  <ul>
+                    <li>Detect</li>
+                    <li>Diff</li>
+                    <li>Insert</li>
+                  </ul>
+                </li>
+                <li class="fragment">Route option: <code>_htmx_route: true</code> &#8658; <code>Drupal\Core\Render\Plugin\DisplayVariant\SimplePageVariant</code></li>
+                <li class="fragment">HTMX Block: A drupal block that loads another block dynamically via HTMX.</li>
+                <li class="fragment"><code>htmx/debug</code> library &#8658; <code>data-hx-ext="debug"</code></li>
+              </ul>
+            </section>
+            <section data-transition="fade">
+              <h2><code>/htmx/{entityType}/{entity}/{viewMode}</code></h2>
+              <p>Renders an entity in the given view mode and displays using the
+              <code>SimplePageVariant</code> page display</p>
+            </section>
+            <section data-transition="fade">
               <h2>HTMX attributes in Twig</h2>
-              <p>Coming feature:<br><a href="https://www.drupal.org/project/htmx/issues/3474162">https://www.drupal.org/project/htmx/issues/3474162</a></p>
               <pre><code class="language-twig"><script type="text/template">{% set htmx_attribute = create_htmx() %}%}
 
 {# build up your htmx attributes #}
 
 {% attributes.merge(htmx_attribute) %}
 <button {{ attributes }}>Some text</button></script></code></pre>
+              <p>
+                You will need a url object to add any requests to an HtmxAttribute.
+                The <em>Twig Tweak</em> module provides a <code>drupal_url</code>
+                function that you can use to get a Url object in Twig.</p>
             </section>
             <section data-transition="fade-in slide-out">
-                <h2>More tools in the box</h2>
-                <ul>
-                    <li class="fragment">Assets (CSS/JS) from the request are also inserted
-                        <ul>
-                            <li>Detect</li>
-                            <li>Diff</li>
-                            <li>Insert</li>
-                        </ul>
-                    </li>
-                    <li class="fragment">Route option: <code>_htmx_route: true</code> &#8658; <code>Drupal\Core\Render\Plugin\DisplayVariant\SimplePageVariant</code></li>
-                    <li class="fragment"><code>/htmx/{entityType}/{entity}/{viewMode}</code></li>
-                    <li class="fragment">HTMX Block: A drupal block that loads another block dynamically via HTMX.</li>
-                    <li class="fragment"><code>htmx/debug</code> library &#8658; <code>data-hx-ext="debug"</code></li>
-                </ul>
+              <h2>Views Display</h2>
+              <ul>
+                <li class="fragment">An <em>HTMX</em> display plugin is provided:
+                  <ul>
+                    <li>Set a custom path for the display</li>
+                    <li>Renders on the <code>SimplePageVariant</code></li>
+                  </ul>
+                </li>
+                <li class="fragment">Exposed forms altered to use HTMX to refresh the display</li>
+                <li class="fragment">An HTMX powered mini-pager is also provided if your view needs a pager</li>
+              </ul>
             </section>
         </section>
         <section>
