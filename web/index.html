@@ -227,11 +227,11 @@
                 <ul>
                     <li>GET (retrieves): <code>data-hx-get="/path"</code></li>
                     <li>POST (creates): <code>data-hx-post="/path"</code></li>
-                    <li>PUT & PATCH (alter):</li>
+                    <li>PUT & PATCH (alter):
                     <ul>
                         <li><code>data-hx-put="/path"</code></li>
                         <li><code>data-hx-patch="/path"</code></li>
-                    </ul>
+                    </ul></li>
                     <li>DELETE (deletes): <code>data-hx-delete="/path"</code></li>
                 </ul>
             </section>
@@ -377,13 +377,13 @@
                 <h2>HTMX is easy to use in your Drupal project</h2>
                 <a href="https://www.drupal.org/project/htmx">https://www.drupal.org/project/htmx</a>
                 <pre><code class="language-sh">composer require 'drupal/htmx:^1.2'</code></pre>
-                <span class="fragment"> and either
+                <div class="fragment"> and either
                 <pre><code class="language-twig">{# In a Twig template we attach the library. #}
 {{ attach_library('htmx/drupal') }}</code></pre>
                 or
                 <pre><code class="language-php">// Include it in your Drupal render array.
 $build['#attached']['library'][] = 'htmx/drupal';
-</code></pre></span>
+</code></pre></div>
             </section>
             <section data-transition="fade">
                 <h2>Your HTMX toolbox contains a lot of attributes</h2>
@@ -398,7 +398,7 @@ $build['#attached']['library'][] = 'htmx/drupal';
             <section data-transition="fade">
                 <code>\Drupal\htmx\Template\HtmxAttribute</code>
                 <pre><code class="language-php">class HtmxAttribute extends Attribute {}</code></pre>
-                <span class="fragment">
+                <div class="fragment">
                     What we add to the extended class are methods to build HTMX attributes.
                 <pre><code class="language-php"><script type="text/template">// Add a button to save and configure another plugin.
 $htmxContinue = new HtmxAttribute();
@@ -408,8 +408,8 @@ $htmxContinue->post(Url::fromRoute('entity.htmx_block.add_form', ['plugin_id' =>
 ->swap('outerHTML')
 ->selectOob('#htmx-block-list');
 </script> </code> </pre>
-                </span>
-                <span class="fragment">
+                </div>
+                <div class="fragment">
                 And then you can add the result to the render array.
                 <pre><code class="language-php"><script type="text/template">$actions = [
   'submit' => $parentActions['submit'],
@@ -420,7 +420,7 @@ $htmxContinue->post(Url::fromRoute('entity.htmx_block.add_form', ['plugin_id' =>
     '#submit' => ['::submitForm', '::save'],
     '#attributes' => $htmxContinue->toArray(),
   ],
-];</script></code></pre></span>
+];</script></code></pre></div>
             </section>
             <section data-transition="fade">
                 <p>Since we extend <code>Attribute</code> you can pass your other attributes to the constructor</p>
@@ -480,7 +480,7 @@ $htmxSelect->get(Url::fromRoute('htmx_blocks.htmx_system_block_library'))
                 <ul>
                     <li class="fragment">Alex Bronstein (effulgentsia)</li>
                     <li class="fragment"><a href="https://www.drupal.org/project/drupal/issues/3404409">Gradually replace Drupal's AJAX system with
-                        HTMX</a></code></li>
+                        HTMX</a></li>
                     <li class="fragment">Connected to the effort to refactor jQuery out of Drupal</li>
                 </ul>
             </section>
@@ -488,7 +488,7 @@ $htmxSelect->get(Url::fromRoute('htmx_blocks.htmx_system_block_library'))
                 <h2>A Proof of Concept Under Construction</h2>
                 <ul>
                     <li class="fragment">Théodore Biadala (nod_), <em>front-end framework manager</em>, requested a POC</li>
-                    <li class="fragment"><a href="https://www.drupal.org/project/drupal/issues/3446642">[POC] Implementing some components of the Ajax system using HTMX</a></code></li>
+                    <li class="fragment"><a href="https://www.drupal.org/project/drupal/issues/3446642">[POC] Implementing some components of the Ajax system using HTMX</a></li>
                     <li class="fragment">A Drupal creativity pattern: innovate in contrib and bring the learning to core</li>
                     <li class="fragment">Uses the same process from contrib to insert Assets (CSS/JS) from the request.</li>
                 </ul>
