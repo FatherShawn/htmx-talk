@@ -21,8 +21,8 @@ file. If you wish to  serve them on a nicer url, this repository is setup as a
   * [Documentation](https://project.pages.drupalcode.org/htmx/)
 * Core
   * [Replace ajax system with htmx](https://www.drupal.org/project/drupal/issues/3404409)
-  * [Proof of concept issue](https://www.drupal.org/project/drupal/issues/3446642)
+  * [Current issues in the initiative](https://www.drupal.org/project/issues/search?text=&projects=Drupal+core&assigned=&submitted=&project_issue_followers=&status%5B%5D=Open&issue_tags_op=%3D&issue_tags=HTMX+initiative)
 
 ## Ongoing Conversation
 
-[Drupal Slack](https://www.drupal.org/community/contributor-guide/reference-information/talk/tools/slack)
+[Join the #htmx channel in Drupal Slack](https://www.drupal.org/community/contributor-guide/reference-information/talk/tools/slack)

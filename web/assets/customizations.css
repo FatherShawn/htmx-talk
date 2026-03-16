@@ -4,6 +4,7 @@
 div.chart {
     position: relative;
     min-height: 50vh;
+    min-width: 75vw;
 }
 
 svg {
@@ -19,4 +20,25 @@ svg {
     background: -ms-radial-gradient(center, circle cover, #f7fbfc 0%, #bbd5f7 100%);
     background: radial-gradient(center, circle cover, #f7fbfc 0%, #bbd5f7 100%);
     background-color: var(--r-background-color);
+}
+
+.reveal p.subtitle {
+    font-size: var(--r-heading3-size);
+    margin: var(--r-heading-margin);
+    color: var(--r-heading-color);
+    font-family: var(--r-heading-font);
+    font-weight: var(--r-heading-font-weight);
+    line-height: var(--r-heading-line-height);
+    letter-spacing: var(--r-heading-letter-spacing);
+    text-shadow: var(--r-heading-text-shadow);
+    word-wrap: break-word;
+}
+
+.visually-hidden {
+    position: absolute !important;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    width: 1px;
+    height: 1px;
+    word-wrap: normal;
 }
