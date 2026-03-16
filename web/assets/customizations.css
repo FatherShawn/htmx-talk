@@ -42,3 +42,16 @@ svg {
     height: 1px;
     word-wrap: normal;
 }
+
+.columns {
+    display: flex; /* Enables flexbox for side-by-side layout */
+    gap: 20px; /* Spacing between columns */
+}
+
+.column {
+    flex: 1; /* Equal width for both columns */
+}
+
+.column svg {
+    margin: var(--r-block-margin) 0;
+}
