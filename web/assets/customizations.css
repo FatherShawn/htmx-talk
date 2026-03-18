@@ -55,3 +55,7 @@ svg {
 .column svg {
     margin: var(--r-block-margin) 0;
 }
+
+.reveal h3 > span {
+    text-transform: none;
+}

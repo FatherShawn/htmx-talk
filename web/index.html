@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -17,7 +17,8 @@
 <body>
 <div class="reveal">
     <article class="slides">
-        <section>
+        <!-- Main title -->
+        <section data-timing="60">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 115.15443" role="img" aria-labelledby="desc title">
                 <desc>The htmx logo is a black left angle, a blue forward slash, a black right angle bracket, followed by</desc>
                 <title>htmx</title>
@@ -30,16 +31,17 @@
             <p class="subtitle">DrupalCon Chicago: 2026</p>
             <p>Shawn Duncan</p>
             <small>Principal Software Engineer, Memorial Sloan Kettering Cancer Center</small>
-            <small style="font-size: x-small">© 2026. This work is openly licensed via <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC
+            <p><small style="font-size: x-small">© 2026. This work is openly licensed via <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC
                 BY-SA 4.0</a>.<br>
-            This presentation reflects my own perspective and does not represent the views or opinions of Memorial Sloan Kettering Cancer Center (MSK)</small>
+            This presentation reflects my own perspective and does not represent the views or opinions of Memorial Sloan Kettering Cancer Center (MSK)</small></p>
         </section>
+        <!-- HTMX:Background and Theory -->
         <section>
-            <section data-transition="slide-in fade-out">
+            <section data-transition="slide-in fade-out" data-timing="30">
                 <h2>HTMX</h2
                 ><p class="subtitle">Background and Theory</p>
             </section>
-            <section data-transition="fade">
+            <section data-transition="fade" data-timing="30">
                 <h3>Strong reputation in the Javascript ecosystem</h3>
                 <div class="r-stack">
                     <div class="chart fragment fade-in-then-out">
@@ -161,7 +163,7 @@
                     </div>
                 </div>
             </section>
-            <section>
+            <section data-timing="30">
                 <h3>HTMX is small</h3>
                     <div class="chart fragment semi-fade-out">
                         <canvas data-chart="bar">
@@ -204,7 +206,7 @@
                     <p class="fragment">2.9 kB minified filesize</p>
             </section>
             <section data-transition="slide-in fade-out">
-                <h2>HTMX is Declarative</h2>
+                <h3>HTMX is Declarative</h3>
                 <p class="subtitle">HTMX extends and processes HTML.</p>
                 <div class="r-stack"><pre class="fragment "><code data-line-numbers>
 <script type="text/template"><select data-drupal-selector="edit-config-type"
@@ -234,7 +236,7 @@
                 </aside>
             </section>
             <section data-transition="fade">
-                <h2>Any element can issue an HTTP request</h2>
+                <h3>Any element can issue an HTTP request</h3>
                 <pre><code data-line-numbers="2">
 <script type="text/template"><select data-drupal-selector="edit-config-type"
     data-hx-post="/admin/config/development/configuration/single/export"
@@ -266,7 +268,7 @@
                 </script> </code></pre>
             </section>
             <section data-transition="fade">
-                <h2>Use all the “verbs” of HTTP</h2>
+                <h3>Use all the “verbs” of HTTP</h3>
                 <ul>
                     <li>GET (retrieves): <code>data-hx-get="/path"</code></li>
                     <li>POST (creates): <code>data-hx-post="/path"</code></li>
@@ -279,7 +281,7 @@
                 </ul>
             </section>
             <section data-transition="fade-in slide-out">
-                <h2>Target any element in the document for replacement</h2>
+                <h3>Target any element in the document for replacement</h3>
                 <pre><code data-line-numbers="3-5">
 <script type="text/template"><button
     data-hx-get=”/htmx/blocks/add/announce_block”
@@ -311,13 +313,36 @@
                 </ol>
             </section>
         </section>
+        <!-- Examples -->
         <section>
-            <section>
+            <section data-timing="30">
                 <h2>Examples</h2>
             </section>
-        </section>
-        <section>
             <section>
+                <h3><span class="class-name">ConfigSingleExportForm</span></h3>
+                <aside class="notes">Change tabs and demo the form.</aside>
+            </section>
+            <section>
+                <h3><span class="class-name">ConfigSingleExportForm</span>: Dynamic selects</h3>
+                <pre><code data-line-numbers="1-5">
+<script type="text/template"><select data-hx-post="/admin/config/development/configuration/single/export"
+        data-hx-drupal-only-main-content=""
+        data-hx-select='*:has(>select[name="config_name"])'
+        data-hx-target='*:has(>select[name="config_name"])'
+        data-hx-swap="outerHTML ignoreTitle:true"
+        data-drupal-selector="edit-config-type" id="edit-config-type"
+        name="config_type"
+        class="form-select form-element form-element--type-select">
+        <!-- <option> tags go here...>-->
+</select>
+
+</script>
+                </code></pre>
+            </section>
+        </section>
+        <!-- The Toolset -->
+        <section>
+            <section data-timing="30">
                 <h2>The Toolset</h2>
             </section>
             <section>
@@ -336,16 +361,18 @@
                 <h3>Return only main content</h3>
             </section>
         </section>
+        <!--  Let's Build Something -->
         <section>
-            <section>
+            <section data-timing="30">
                 <h2>Let's Build Something</h2>
             </section>
         </section>
+        <!--  The Initiative -->
         <section>
-            <section>
+            <section data-timing="30">
                 <h2>The Initiative: Replace AJAX API with HTMX</h2>
             </section>
-            <section>
+            <section data-timing="30">
                 <h3>Lead Collaborators</h3>
                 <ul>
                     <li><a href="https://www.drupal.org/u/nod_">Théodore Biadala (nod_)</a><br>
@@ -358,7 +385,7 @@
                         provisional Frontend Framework Manager</li>
                 </ul>
             </section>
-            <section>
+            <section data-timing="30">
                 <h3>The Work</h3>
             <p>Refactor every use of the existing jQuery based Ajax API to use HTMX instead.</p>
             </section>
@@ -370,16 +397,17 @@
                     <li>Find other collaborators in the Contribution Room tomorrow.</li>
                 </ul>
             </section>
-            <section>
+            <section data-timing="30">
                 <h3>Thanks for coming!</h3>
                 <div class="columns">
                     <div class="column">
-                        <img src="assets/htmx-a-new-toolset-in-drupal-core_duncan_1036072_feedback-code.png" height="400"width="400"/>
+                        <img src="assets/htmx-a-new-toolset-in-drupal-core_duncan_1036072_feedback-code.png" height="400"width="400" alt="QR Code for the evaluation link that follows"/>
                         <p>Session evaluation</p>
                     </div>
                     <div class="column">
                         <svg xmlns="http://www.w3.org/2000/svg" width="400" height="400"
-                             viewBox="0 0 400 400">
+                             viewBox="0 0 400 400" aria-describedby="text">
+                            <text>QR code for the link to these slides that is listed below.</text>
                             <rect x="0" y="0" width="400" height="400" fill="#fefefe"/>
                             <g transform="scale(10.811)">
                                 <g transform="translate(4.000,4.000)">
@@ -411,9 +439,9 @@
     //  - https://revealjs.com/config/
     Reveal.initialize({
         hash: true,
-        width: 1400,
-        height: 700,
-        defaultTiming: 120,
+        width: 1920,
+        height: 1200,
+        totalTime: 45,
         // Learn about plugins: https://revealjs.com/plugins/
         plugins: [RevealHighlight, RevealNotes, RevealChart]
     });
