@@ -59,3 +59,7 @@ svg {
 .reveal h3 > span {
     text-transform: none;
 }
+
+.reveal h2.acronym-text {
+    font-size: var(--r-heading1-size);
+}

@@ -38,8 +38,7 @@
         <!-- HTMX:Background and Theory -->
         <section>
             <section data-transition="slide-in fade-out" data-timing="30">
-                <h2>HTMX</h2
-                ><p class="subtitle">Background and Theory</p>
+                <h2 class="acronym-text">HTMX</h2><p class="subtitle">Background and Theory</p>
             </section>
             <section data-transition="fade" data-timing="30">
                 <h3>Strong reputation in the Javascript ecosystem</h3>
@@ -313,10 +312,55 @@
                 </ol>
             </section>
         </section>
+        <!-- The Toolset -->
+        <section>
+            <section data-timing="30">
+                <h2 class="r-fit-text">The Toolset</h2>
+            </section>
+            <section>
+                <h3>Process attachments (CSS/JS)</h3>
+                <ul>
+                    <li class="fragment">Feature parity: Continues to function as you expect.</li>
+                    <li class="fragment">On render, the current set of CSS & JS are compared with the new request.</li>
+                    <li class="fragment">Only new assets are sent.</li>
+                    <li class="fragment">Drupal javascript behaviors are attached to inserted code.</li>
+                    <li class="fragment">HTMX attributes are processed on inserted code.</li>
+                    <li class="fragment">See <code>\Drupal\Core\Render\HtmlResponseAttachmentsProcessor::processAttachments</code> and <code>core/misc/htmx/htmx-assets.js</code></li>
+                </ul>
+            </section>
+            <section>
+                <h3>Factory object for HTMX headers and attributes</h3>
+                <ul>
+                    <li class="fragment"><code>\Drupal\Core\Htmx\Htmx</code></li>
+                    <li class="fragment">A method for every HTMX attribute.</li>
+                    <li class="fragment">A method for every HTMX response headers.</code></li>
+                    <li class="fragment">DocBlocks link to HTMX documentation.</li>
+                    <li class="fragment">Similar pattern to <code>CacheableMetadata::applyTo</code></li>
+                </ul>
+                <pre class="fragment">
+<code class="language-php" data-line-numbers>$url = Url::fromRoute('some.route');
+(new Htmx())
+      ->get($url)
+      ->select('div.new-stuff')
+      ->target('div.existing-stuff')
+      ->swap('beforeend')
+      ->applyTo($build['something']);
+                </code></pre>
+            </section>
+            <section>
+                <h3>Support dynamic forms using HTMX</h3>
+            </section>
+            <section>
+                <h3>Determine which elements are involved in an HTMX Request</h3>
+            </section>
+            <section>
+                <h3>Return only main content</h3>
+            </section>
+        </section>
         <!-- Examples -->
         <section>
             <section data-timing="30">
-                <h2>Examples</h2>
+                <h2 class="r-fit-text">Examples</h2>
             </section>
             <section>
                 <h3><span class="class-name">ConfigSingleExportForm</span></h3>
@@ -326,51 +370,51 @@
                 <h3><span class="class-name">ConfigSingleExportForm</span>: Dynamic selects</h3>
                 <pre><code data-line-numbers="1-5">
 <script type="text/template"><select data-hx-post="/admin/config/development/configuration/single/export"
-        data-hx-drupal-only-main-content=""
-        data-hx-select='*:has(>select[name="config_name"])'
-        data-hx-target='*:has(>select[name="config_name"])'
-        data-hx-swap="outerHTML ignoreTitle:true"
-        data-drupal-selector="edit-config-type" id="edit-config-type"
-        name="config_type"
-        class="form-select form-element form-element--type-select">
+                                     data-hx-drupal-only-main-content=""
+                                     data-hx-select='*:has(>select[name="config_name"])'
+                                     data-hx-target='*:has(>select[name="config_name"])'
+                                     data-hx-swap="outerHTML ignoreTitle:true"
+                                     data-drupal-selector="edit-config-type" id="edit-config-type"
+                                     name="config_type"
+                                     class="form-select form-element form-element--type-select">
         <!-- <option> tags go here...>-->
 </select>
-
 </script>
                 </code></pre>
-            </section>
-        </section>
-        <!-- The Toolset -->
-        <section>
-            <section data-timing="30">
-                <h2>The Toolset</h2>
+                <pre><code data-line-numbers="1-5">
+<script type="text/template"><select data-hx-post="/admin/config/development/configuration/single/export"
+                                     data-hx-drupal-only-main-content=""
+                                     data-hx-select="[data-export-wrapper]"
+                                     data-hx-target="[data-export-wrapper]"
+                                     data-hx-swap="outerHTML ignoreTitle:true"
+                                     data-drupal-selector="edit-config-name" id="edit-config-name" name="config_name"
+                                     class="form-select form-element form-element--type-select">
+        <!-- <option> tags go here...>-->
+</select></script>
+                </code></pre>
+                <aside class="notes">
+                    <ul>
+                        <li>Make the request</li>
+                        <li>Select replacement</li>
+                        <li>Swap for the target</li>
+                    </ul>
+                </aside>
             </section>
             <section>
-                <h3>Process attachments (CSS/JS)</h3>
-            </section>
-            <section>
-                <h3>Support dynamic forms using HTMX</h3>
-            </section>
-            <section>
-                <h3>Determine which elements are involved in an HTMX Request</h3>
-            </section>
-            <section>
-                <h3>Factory object for HTMX headers and attributes</h3>
-            </section>
-            <section>
-                <h3>Return only main content</h3>
+                <h3><span class="class-name">ConfigSingleExportForm</span>: <br>The PHP</h3>
+                <aside class="notes">Switch to phpStorm</aside>
             </section>
         </section>
         <!--  Let's Build Something -->
         <section>
             <section data-timing="30">
-                <h2>Let's Build Something</h2>
+                <h2 class="r-fit-text">Let's Build Something</h2>
             </section>
         </section>
         <!--  The Initiative -->
         <section>
             <section data-timing="30">
-                <h2>The Initiative: Replace AJAX API with HTMX</h2>
+                <h2 class="r-fit-text">The Initiative: <br>Replace AJAX API with HTMX</h2>
             </section>
             <section data-timing="30">
                 <h3>Lead Collaborators</h3>
@@ -441,7 +485,7 @@
         hash: true,
         width: 1920,
         height: 1200,
-        totalTime: 45,
+        totalTime: 2700,
         // Learn about plugins: https://revealjs.com/plugins/
         plugins: [RevealHighlight, RevealNotes, RevealChart]
     });
