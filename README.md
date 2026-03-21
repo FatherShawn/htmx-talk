@@ -3,8 +3,9 @@
 ## Slides
 
 The slides are built using [reveal.js](https://revealjs.com).  They can be seen by directly opening the `index.html`
-file. If you wish to  serve them on a nicer url, this repository is setup as a
-[DDEV](https://ddev.readthedocs.io/en/stable/users/quickstart/) project which provides a local web server.
+file. If you wish to serve them on a nicer url, this repository is setup as a
+[DDEV](https://ddev.readthedocs.io/en/stable/users/quickstart/) project which provides a local web server. For a while
+after this presentation, the slides can be viewed at [https://talks.shawnduncan.org/htmx](https://talks.shawnduncan.org/htmx).
 
 ## References
 
