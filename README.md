@@ -1,4 +1,4 @@
-# HTMX: Hypermedia Powered Drupal
+# HTMX: A new toolset in Drupal core
 
 ## Slides
 
