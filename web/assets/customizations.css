@@ -63,3 +63,7 @@ svg {
 .reveal h2.acronym-text {
     font-size: var(--r-heading1-size);
 }
+
+.reveal div.references {
+    text-align: left;
+}

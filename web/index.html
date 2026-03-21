@@ -17,8 +17,7 @@
 <body>
 <div class="reveal">
     <article class="slides">
-        <!-- Main title -->
-        <section data-timing="60">
+        <section id="main-title" data-timing="60">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 115.15443" role="img" aria-labelledby="desc title">
                 <desc>The htmx logo is a black left angle, a blue forward slash, a black right angle bracket, followed by</desc>
                 <title>htmx</title>
@@ -35,12 +34,11 @@
                 BY-SA 4.0</a>.<br>
             This presentation reflects my own perspective and does not represent the views or opinions of Memorial Sloan Kettering Cancer Center (MSK)</small></p>
         </section>
-        <!-- HTMX:Background and Theory -->
-        <section>
-            <section data-transition="slide-in fade-out" data-timing="30">
+        <section id="htmx">
+            <section data-timing="30">
                 <h2 class="acronym-text">HTMX</h2><p class="subtitle">Background and Theory</p>
             </section>
-            <section data-transition="fade" data-timing="30">
+            <section data-timing="30">
                 <h3>Strong reputation in the Javascript ecosystem</h3>
                 <div class="r-stack">
                     <div class="chart fragment fade-in-then-out">
@@ -204,11 +202,11 @@
                     </div>
                     <p class="fragment">2.9 kB minified filesize</p>
             </section>
-            <section data-transition="slide-in fade-out">
+            <section>
                 <h3>HTMX is Declarative</h3>
                 <p class="subtitle">HTMX extends and processes HTML.</p>
-                <div class="r-stack"><pre class="fragment "><code data-line-numbers>
-<script type="text/template">%3Cselect data-drupal-selector="edit-config-type"
+                <pre ><code data-line-numbers="|2-5">
+<script type="text/template"><select data-drupal-selector="edit-config-type"
     data-hx-post="/admin/config/development/configuration/single/export"
     data-hx-select="select[data-drupal-selector='edit-config-name']"
     data-hx-target="select[data-drupal-selector='edit-config-name']"
@@ -216,28 +214,16 @@
     id="edit-config-type" name="config_type"
     class="form-select form-element form-element--type-select">
     <!--    Option elements would be here.   -->
-%3C%2Fselect%3E</script>
-                    </code></pre>
-                <pre class="fragment current-visible"><code data-line-numbers="2-5">
-<script type="text/template">%3Cselect data-drupal-selector="edit-config-type"
-    data-hx-post="/admin/config/development/configuration/single/export"
-    data-hx-select="select[data-drupal-selector='edit-config-name']"
-    data-hx-target="select[data-drupal-selector='edit-config-name']"
-    data-hx-swap="outerHTML  ignoreTitle:true"
-    id="edit-config-type" name="config_type"
-    class="form-select form-element form-element--type-select">
-    <!--    Option elements would be here.   -->
-%3C%2Fselect%3E</script>
+</select></script>
                 </code></pre>
-            </div>
                 <aside class="notes">
                     <p>Behaviors are described within the element</p>
                 </aside>
             </section>
-            <section data-transition="fade">
+            <section>
                 <h3>Any element can issue an HTTP request</h3>
-                <pre><code data-line-numbers="2">
-<script type="text/template">%3Cselect data-drupal-selector="edit-config-type"
+                <pre><code data-line-numbers="|2">
+<script type="text/template"><select data-drupal-selector="edit-config-type"
     data-hx-post="/admin/config/development/configuration/single/export"
     data-hx-select="select[data-drupal-selector='edit-config-name']"
     data-hx-target="select[data-drupal-selector='edit-config-name']"
@@ -245,12 +231,12 @@
     id="edit-config-type" name="config_type"
     class="form-select form-element form-element--type-select">
     <!--    Option elements would be here.   -->
-%3C%2Fselect%3E
+</select>
                 </script></code></pre>
             </section>
-            <section data-transition="fade">
+            <section>
                 <h2>Any event can trigger an HTTP request</h2>
-                <pre><code data-line-numbers="2-6">
+                <pre><code data-line-numbers="1-6|3">
 <script type="text/template"><tr
     data-hx-get="/admin/content/example?page=2"
     data-hx-trigger="revealed"
@@ -266,7 +252,7 @@
 </tr>
                 </script> </code></pre>
             </section>
-            <section data-transition="fade">
+            <section>
                 <h3>Use all the “verbs” of HTTP</h3>
                 <ul>
                     <li>GET (retrieves): <code>data-hx-get="/path"</code></li>
@@ -279,7 +265,7 @@
                     <li>DELETE (deletes): <code>data-hx-delete="/path"</code></li>
                 </ul>
             </section>
-            <section data-transition="fade-in slide-out">
+            <section>
                 <h3>Target any element in the document for replacement</h3>
                 <pre><code data-line-numbers="3-5">
 <script type="text/template"><button
@@ -305,13 +291,12 @@
                 <h3>HTMX Can Also Call Javascript</h3>
                 <p class="subtitle">A less common model</p>
                 <ol>
-                    <li class="fragment">Some interaction occurs.</li>
-                    <li class="fragment">Call some JavaScript function</li>
+                    <li class="fragment fade-in-then-semi-out">Some interaction occurs.</li>
+                    <li class="fragment fade-in-then-semi-out">Call some JavaScript function</li>
                 </ol>
             </section>
         </section>
-        <!-- The Toolset -->
-        <section>
+        <section id="toolset">
             <section data-timing="30">
                 <h2 class="r-fit-text">The Toolset</h2>
                 <aside class="notes">Very grateful for Théodore Biadala (nod_) for being a creative partner in building these tools.</aside>
@@ -332,7 +317,7 @@
                 <ul>
                     <li class="fragment fade-in-then-semi-out"><code>\Drupal\Core\Htmx\Htmx</code></li>
                     <li class="fragment fade-in-then-semi-out">A method for every HTMX attribute.</li>
-                    <li class="fragment fade-in-then-semi-out">A method for every HTMX response headers.</li>
+                    <li class="fragment fade-in-then-semi-out">A method for every HTMX response header.</li>
                     <li class="fragment fade-in-then-semi-out">DocBlocks link to HTMX documentation.</li>
                     <li class="fragment fade-in-then-semi-out">Similar pattern to <code>CacheableMetadata::applyTo</code></li>
                     <li class="fragment fade-in-then-semi-out">Static method <code>Htmx::createFromRenderArray</code> for when you want to modify the HTMX properties in an existing render array.</li>
@@ -482,8 +467,7 @@
               </ul>
             </section>
         </section>
-        <!-- Examples -->
-        <section>
+        <section id="examples">
             <section data-timing="30">
                 <h2 class="r-fit-text">Examples</h2>
             </section>
@@ -494,7 +478,7 @@
             <section>
                 <h3><span class="class-name">ConfigSingleExportForm</span>: Dynamic selects</h3>
                 <pre><code data-line-numbers="1-5">
-<script type="text/template">%3Cselect data-hx-post="/admin/config/development/configuration/single/export"
+<script type="text/template"><select data-hx-post="/admin/config/development/configuration/single/export"
   data-hx-drupal-only-main-content=""
   data-hx-select='*:has(>select[name="config_name"])'
   data-hx-target='*:has(>select[name="config_name"])'
@@ -503,10 +487,10 @@
   name="config_type"
   class="form-select form-element form-element--type-select">
   <!-- <option> tags go here...>-->
-%3C%2Fselect%3E</script>
+</select></script>
                 </code></pre>
                 <pre><code data-line-numbers="1-5">
-<script type="text/template">%3Cselect data-hx-post="/admin/config/development/configuration/single/export"
+<script type="text/template"><select data-hx-post="/admin/config/development/configuration/single/export"
   data-hx-drupal-only-main-content=""
   data-hx-select="[data-export-wrapper]"
   data-hx-target="[data-export-wrapper]"
@@ -514,7 +498,7 @@
   data-drupal-selector="edit-config-name" id="edit-config-name" name="config_name"
   class="form-select form-element form-element--type-select">
   <!-- <option> tags go here...>-->
-%3C%2Fselect%3E</script>
+</select></script>
                 </code></pre>
                 <aside class="notes">
                     <ul>
@@ -528,7 +512,7 @@
                 <code>ConfigSingleExportForm</code>
                 <aside class="notes">Walk through the form logic</aside>
               <pre class="r-stretch">
-<code class="language-php" data-line-numbers><script type="text/template">namespace Drupal\config\Form;
+<code class="language-php" data-line-numbers>namespace Drupal\config\Form;
 
 use Drupal\Core\Config\Entity\ConfigEntityInterface;
 use Drupal\Core\Config\StorageInterface;
@@ -768,19 +752,139 @@ class ConfigSingleExportForm extends FormBase {
   }
 
 }
-</script></code>
+</code>
               </pre>
             </section>
-          <section>TokenBrowser?</section>
+            <section data-timing="30">
+              <h3>Token Browser</h3>
+            <pre class="fragment">
+<code class="language-php" data-line-numbers="1-9|10|11">$htmx = new Htmx();
+                $htmx->get(Url::fromRoute('token_browser.htmx', [
+                  'token_type' => $token_info['parent_top'],
+                  'parent' => $token_info['parent'],
+                  'token' => $token,
+                ]))
+                  ->trigger('click')
+                  ->swap('outerHTML')
+                  ->target('closest tr');
+                $htmx->applyTo($wrapper['data']['button']);
+                $row['data-hx-select'] = 'tr';
+</code>
+            </pre>
+            <a href="https://www.drupal.org/project/token_browser" class="fragment">https://www.drupal.org/project/token_browser</a>
+            </section>
+            <section data-timing="30">
+                <h3>Display Builder</h3>
+                <p>A display building tool for ambitious site builders:</p>
+                <ul>
+                    <li><strong>Design system native</strong>: fully use your design system (components, style utilities, icons, themes/modes, CSS variables...) directly in Drupal</li>
+                    <li><strong>Unified</strong>: replace Layout Builder for entity view displays, Block Layout for page displays, and as a replacement of the Views' display building feature.</li>
+                    <li><strong>Modern</strong>: powerful features (dynamic previews, presets, deep integration with Drupal APIs...) without levraging Drupal libraries</li>
+                </ul>
+                <a href="https://www.drupal.org/project/display_builder">https://www.drupal.org/project/display_builder</a>
+                <a href="https://www.drupal.org/project/display_builder/issues/3529064">https://www.drupal.org/project/display_builder/issues/3529064</a>
+            </section>
         </section>
-        <!--  Let's Build Something -->
-        <section>
+        <section id="build-something">
             <section data-timing="30">
                 <h2 class="r-fit-text">Let's Build Something</h2>
             </section>
+            <section>
+                <h3>Dynamically insert the login form so that a user can login without loading a new page.</h3>
+                <pre class="fragment">
+<code data-line-numbers="1-4"><script type="text/template"><input data-hx-get="/user/login"
+    data-hx-select="#user-login-form"
+    data-hx-target="#header-nav"
+    data-hx-swap="afterend ignoreTitle:true"
+    type="button" name="op" value="Login" class="button js-form-submit form-submit">
+                </script></code></pre>
+            </section>
+            <section>
+                <h3>Find the route for <code>/user/login</code></h3>
+                <pre class="fragment">
+<code class="language-yaml">user.login:
+  path: '/user/login'
+  defaults:
+    _form: '\Drupal\user\Form\UserLoginForm'
+    _title: 'Log in'
+  requirements:
+    _user_is_logged_in: 'FALSE'
+  options:
+    _maintenance_access: TRUE
+</code>
+                </pre>
+                <code class="fragment">core/modules/user/user.routing.yml</code>
+            </section>
+            <section>
+                <h3>Inspect the source page and find the CSS selector of the element that you want to select</h3>
+                <pre class="fragment">
+<code><form class="user-login-form" data-drupal-selector="user-login-form" action="/user/login" method="post" id="user-login-form" accept-charset="UTF-8">
+  <div class="js-form-item form-item form-type-textfield js-form-type-textfield form-item-name js-form-item-name">...</div>
+  <div class="js-form-item form-item form-type-password js-form-type-password form-item-pass js-form-item-pass">...</div>
+  <input autocomplete="off" data-drupal-selector="form-sopbeel-jfmfkimat1rjdhmwgfokhhrsq0jfouomvj4" type="hidden" name="form_build_id" value="form-SoPBeEl-jfmFKImat1RjdHMWGFOkHHrSQ0JFOUoMvJ4">
+  <input data-drupal-selector="edit-user-login-form" type="hidden" name="form_id" value="user_login_form">
+  <div data-drupal-selector="edit-actions" class="form-actions js-form-wrapper form-wrapper" id="edit-actions">...</div>
+</form>
+</code>
+                </pre>
+            </section>
+            <section>
+                <h3>Inspect the page you are building and find the CSS selector of your target element</h3>
+                <p class="subtitle">Also decide on placement in relation to the target element</p>
+                <pre class="fragment">
+<code ><div class="container site-header__inner__container">
+    <div class="header-nav-overlay" data-drupal-selector="header-nav-overlay">...</div>
+    <div class="mobile-buttons" data-drupal-selector="mobile-buttons">...</div>
+    <div id="header-nav" class="header-nav" data-drupal-selector="header-nav">...</div>
+</div>
+</code>
+                </pre>
+            </section>
+            <section>
+                <h3>Decision Summary</h3>
+                <ol>
+                    <li class="fragment fade-in-then-semi-out">Where can you request the markup?</li>
+                    <li class="fragment fade-in-then-semi-out">What is the CSS selector for the markup you want?</li>
+                    <li class="fragment fade-in-then-semi-out">What is the CSS selector for the target of your swap?</li>
+                    <li class="fragment fade-in-then-semi-out">What is your swap strategy in relationship to your target?</li>
+                </ol>
+            </section>
+            <section>
+                <h3>Build the render array</h3>
+                <pre class="r-stretch">
+<code class="language-php" data-line-numbers>  public function build(): array {
+    $build['login'] = [
+      '#type' => 'button',
+      '#value' => new TranslatableMarkup('Login'),
+      '#submit_button' => FALSE,
+      "#access" => $this->currentUser->isAnonymous(),
+
+    ];
+    $url = Url::fromRoute('user.login');
+    (new Htmx())->get($url)
+      ->onlyMainContent()
+      ->select('#user-login-form')
+      ->target('#header-nav')
+      ->swap('afterend')
+      ->applyTo($build['login']);
+    // Keep a logout link.
+    $build['logout'] = [
+      '#type' => 'link',
+      '#title' => new TranslatableMarkup('Logout'),
+      '#url' => Url::fromRoute('user.logout'),
+      "#access" => $this->currentUser->isAuthenticated(),
+    ];
+    $cache = new CacheableMetadata();
+    $cache->addCacheContexts(['user.roles']);
+    $cache->applyTo($build);
+    return $build;
+  }
+</code>
+                </pre>
+                <aside class="notes">Switch browser tabs and demo</aside>
+            </section>
         </section>
-        <!--  The Initiative -->
-        <section>
+        <section id="initiative">
             <section data-timing="30">
                 <h2 class="r-fit-text">The Initiative: <br>Replace AJAX API with HTMX</h2>
             </section>
@@ -808,6 +912,24 @@ class ConfigSingleExportForm extends FormBase {
                     <li>Research and write up a replacement strategy for our <a href="https://www.drupal.org/project/documentation/issues/3535179">Cookook.</a></li>
                     <li>Find other collaborators in the Contribution Room tomorrow.</li>
                 </ul>
+            </section>
+            <section data-timing="10">
+                <h3>Reference links</h3>
+                <div class="references"><p class="subtitle">Blogs</p>
+                    <ul>
+                        <li><a href="https://tresbien.tech/blog/how-use-htmx-forms-drupal-113/">How to use HTMX with
+                            forms in Drupal 11.3</a></li>
+                        <li><a href="https://blog.gypsydave5.com/posts/2024/4/12/htmx-and-the-rule-of-least-power/">Rule
+                            of Least Power</a></li>
+                    </ul>
+
+                    <p class="subtitle">Documentation</p>
+                    <ul>
+                        <li><a href="https://www.drupal.org/docs/develop/drupal-apis/htmx">HTMX API Reference</a></li>
+                        <li><a href="https://htmx.org/docs/">HTMX Documentation</a></li>
+                        <li><a href="https://hypermedia.systems/">Hypermedia Systems</a></li>
+                    </ul>
+                </div>
             </section>
             <section data-timing="30">
                 <h3>Thanks for coming!</h3>
