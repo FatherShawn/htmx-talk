@@ -167,17 +167,24 @@
                             <!--
                             {
                               "data": {
-                                "labels": ["Vue.js","jQuery","React + React DOM",  "htmx"],
+                                "labels": ["Next.js","jQuery", "htmx"],
                                 "datasets": [
                                   {
-                                    "data": [116.1, 76.4, 11, 2.9],
+                                    "data": [80, 76.4, 49.9],
                                     "label": "minified",
-                                    "backgroundColor": ["#3465A4", "#3465A4","#3465A4","#B38E07", "#3465A4"]
+                                    "backgroundColor": ["#3465A4", "#3465A4","#B38E07"]
                                   }
                                 ]
                               },
                               "options": {
                                 "scales": {
+                                    "x": {
+                                      "ticks": {
+                                        "font": {
+                                          "size": 24
+                                        }
+                                      }
+                                    },
                                   "y": {
                                     "title": {
                                       "display": true,
@@ -191,7 +198,7 @@
                                   },
                                   "title": {
                                     "display": true,
-                                    "text": "Minified Library Size",
+                                    "text": "Installed Size",
                                     "font": {"size": 24}
                                   }
                                 }
@@ -200,7 +207,8 @@
                             -->
                         </canvas>
                     </div>
-                    <p class="fragment">2.9 kB minified filesize</p>
+                    <p class="fragment">49.9 kB minified on <a href="https://github.com/bigskysoftware/htmx/releases/tag/v2.0.7">GitHub</a></p>
+              <aside class="notes">Source for next.js size: <a href="https://teta.so/learn/sveltekit-vs-nextjs">https://teta.so/learn/sveltekit-vs-nextjs</a></aside>
             </section>
             <section>
                 <h3>HTMX is Declarative</h3>
@@ -818,13 +826,13 @@ class ConfigSingleExportForm extends FormBase {
             <section>
                 <h3>Inspect the source page and find the CSS selector of the element that you want to select</h3>
                 <pre class="fragment">
-<code><form class="user-login-form" data-drupal-selector="user-login-form" action="/user/login" method="post" id="user-login-form" accept-charset="UTF-8">
+<code data-line-numbers="|1"><script type="text/template"><form class="user-login-form" data-drupal-selector="user-login-form" action="/user/login" method="post" id="user-login-form" accept-charset="UTF-8">
   <div class="js-form-item form-item form-type-textfield js-form-type-textfield form-item-name js-form-item-name">...</div>
   <div class="js-form-item form-item form-type-password js-form-type-password form-item-pass js-form-item-pass">...</div>
   <input autocomplete="off" data-drupal-selector="form-sopbeel-jfmfkimat1rjdhmwgfokhhrsq0jfouomvj4" type="hidden" name="form_build_id" value="form-SoPBeEl-jfmFKImat1RjdHMWGFOkHHrSQ0JFOUoMvJ4">
   <input data-drupal-selector="edit-user-login-form" type="hidden" name="form_id" value="user_login_form">
   <div data-drupal-selector="edit-actions" class="form-actions js-form-wrapper form-wrapper" id="edit-actions">...</div>
-</form>
+</form></script>
 </code>
                 </pre>
             </section>
@@ -832,7 +840,7 @@ class ConfigSingleExportForm extends FormBase {
                 <h3>Inspect the page you are building and find the CSS selector of your target element</h3>
                 <p class="subtitle">Also decide on placement in relation to the target element</p>
                 <pre class="fragment">
-<code ><div class="container site-header__inner__container">
+<code data-line-numbers="|4"><div class="container site-header__inner__container">
     <div class="header-nav-overlay" data-drupal-selector="header-nav-overlay">...</div>
     <div class="mobile-buttons" data-drupal-selector="mobile-buttons">...</div>
     <div id="header-nav" class="header-nav" data-drupal-selector="header-nav">...</div>
