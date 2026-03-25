@@ -56,6 +56,11 @@ svg {
     margin: var(--r-block-margin) 0;
 }
 
+.columns img.column {
+    max-width: 50%;
+    height: auto;
+}
+
 .reveal h3 > span {
     text-transform: none;
 }
